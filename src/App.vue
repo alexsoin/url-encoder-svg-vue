@@ -53,7 +53,15 @@ async function copyCB (text: string) {
 		class="fixed top-10 max-w-lg z-20 bg-slate-600 text-gray-200"
 		:open="isInfoOpen"
 	>
-		<p>SVG можно использовать в CSS через data URI, но вставку незакодированного SVG поддерживают только браузеры на Webkit. Если закодировать SVG с помощью <code class="text-cyan-400">encodeURIComponent()</code> — SVG начинает отображаться во всех современных браузерах.</p><p>У тега SVG обязательно должен быть атрибут xmlns, вот такой: <b>xmlns='http://www.w3.org/2000/svg'</b>. Если его нет, он будет добавлен автоматически.</p><p>Закодированный SVG можно использовать в <code class="text-cyan-400">background</code>, в <code class="text-cyan-400">border-image</code> или в <code class="text-cyan-400">mask</code>.</p>
+		<p class="mb-2">
+			SVG можно использовать в CSS через data URI, но вставку незакодированного SVG поддерживают только браузеры на Webkit. Если закодировать SVG с помощью <code class="text-cyan-400">encodeURIComponent()</code> — SVG начинает отображаться во всех современных браузерах.
+		</p>
+		<p class="mb-2">
+			У тега SVG обязательно должен быть атрибут xmlns, вот такой: <b>xmlns='http://www.w3.org/2000/svg'</b>. Если его нет, он будет добавлен автоматически.
+		</p>
+		<p class="mb-2">
+			Закодированный SVG можно использовать в <code class="text-cyan-400">background</code>, в <code class="text-cyan-400">border-image</code> или в <code class="text-cyan-400">mask</code>.
+		</p>
 		<button
 			class="bg-cyan-600 hover:bg-cyan-700 transition-colors px-6 py-1 rounded mt-6"
 			@click="isInfoOpen = false"
@@ -62,21 +70,21 @@ async function copyCB (text: string) {
 		</button>
 	</dialog>
 
-	<div class="min-h-screen min-w-full flex justify-center items-center text-gray-400">
-		<div class="container mx-auto">
+	<div class="min-h-screen min-w-full flex justify-center items-center text-gray-400 py-6">
+		<div class="container mx-auto px-4">
 			<div class="flex flex-col">
-				<h1 class="text-center text-4xl mb-8 flex flex-row gap-3 items-center justify-center">
+				<h1 class="text-center text-2xl lg:text-4xl mb-8 flex flex-row gap-3 items-center justify-center">
 					<ZencodLink />
 					URL-encoder для SVG
 				</h1>
-				<div class="flex justify-center mb-20">
-					<ul class="flex flex-row">
+				<div class="flex justify-center mb-10 lg:mb-20">
+					<ul class="flex flex-row overflow-x-auto">
 						<li
 							v-for="(tab, tabKey) in tabs"
 							:key="tabKey+tab.id"
 						>
 							<button
-								class="font-light py-1 px-6 hover:bg-slate-600 hover:bg-opacity-80"
+								class="font-light py-1 px-6 hover:bg-slate-600 hover:bg-opacity-80 whitespace-nowrap"
 								:class="{ 'bg-slate-700': tab.id !== activeTab, 'bg-slate-600': tab.id === activeTab, 'pointer-events-none': tab.id === activeTab, 'rounded-l': tabKey === 0, 'rounded-r': tabKey === tabs.length-1 }"
 								@click="activeTab = tab.id"
 							>
@@ -85,7 +93,7 @@ async function copyCB (text: string) {
 						</li>
 					</ul>
 				</div>
-				<div class="flex flex-row gap-8">
+				<div class="flex flex-col lg:flex-row gap-8">
 					<div class="relative w-full">
 						<h2 class="mb-4 text-xl font-light">
 							Вставьте код SVG:
@@ -190,7 +198,7 @@ async function copyCB (text: string) {
 			</div>
 			<div class="my-10 flex gap-3 justify-end">
 				<button
-					class="text-gray-500 hover:text-gray-600"
+					class="text-gray-400 hover:text-gray-500"
 					@click="isInfoOpen = true"
 				>
 					<svg
