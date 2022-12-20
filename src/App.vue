@@ -4,6 +4,7 @@ import AceEditor from "ace-editor-vue3";
 import { encodeSVG, decodeSVG } from "@/coder-svg";
 import ZencodLink from "@/components/ZencodLink.vue";
 import "brace/mode/css";
+import "brace/mode/xml";
 import "brace/theme/dracula";
 
 const optionsEditor = {
@@ -102,7 +103,7 @@ async function copyCB (text: string) {
 							v-model:codeContent="inputSVG"
 							:options="optionsEditor"
 							theme="dracula"
-							lang="html"
+							lang="xml"
 							width="100%"
 							height="300px"
 						/>
@@ -185,6 +186,17 @@ async function copyCB (text: string) {
 							/>  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" /></svg>
 						</button>
 						<AceEditor
+							v-if="nowTab.lang === 'css'"
+							v-model:codeContent="nowTab.value"
+							:options="{ ...optionsEditor, setReadOnly: true}"
+							theme="dracula"
+							:lang="nowTab.lang"
+							width="100%"
+							height="300px"
+							disabled
+						/>
+						<AceEditor
+							v-else
 							v-model:codeContent="nowTab.value"
 							:options="{ ...optionsEditor, setReadOnly: true}"
 							theme="dracula"
